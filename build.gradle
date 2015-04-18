@@ -6,8 +6,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:0.12.2"
-        classpath "jp.leafytree.gradle:gradle-android-scala-plugin:1.0-SNAPSHOT"
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath "jp.leafytree.gradle:gradle-android-scala-plugin:1.2.1"
     }
 }
 
@@ -30,18 +30,43 @@ android {
 
     buildTypes {
         debug {
-            runProguard true
+            minifyEnabled true
             proguardFile file("proguard-rules.txt")
         }
 
         release {
-            runProguard true
+            minifyEnabled true
             proguardFile file("proguard-rules.txt")
         }
     }
+
+//    sourceSets {
+////        main {
+////            manifest.srcFile 'AndroidManifest.xml'
+////            java.srcDirs = ['src']
+////            resources.srcDirs = ['src/main/res']
+////            aidl.srcDirs = ['src']
+////            renderscript.srcDirs = ['src']
+////            res.srcDirs = ['res']
+////            assets.srcDirs = ['assets']
+////        }
+//
+//        // Move the tests to tests/java, tests/res, etc...
+//        instrumentTest.setRoot('tests')
+//
+//        // Move the build types to build-types/<type>
+//        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+//        // This moves them out of them default location under src/<type>/... which would
+//        // conflict with src/ being used by the main source set.
+//        // Adding new build types or product flavors should be accompanied
+//        // by a similar customization.
+//        debug.setRoot('build-types/debug')
+//        release.setRoot('build-types/release')
+//    }
 }
 
 dependencies {
-    compile "org.scala-lang:scala-library:2.11.2"
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile "org.scala-lang:scala-library:2.11.5"
 	compile "org.scaloid:scaloid_2.11:3.5-10+"
 }
